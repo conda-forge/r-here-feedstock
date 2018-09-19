@@ -1,52 +1,51 @@
-{% set name = "here" %}
-{% set version = "0.1" %}
+{% set version = '0.1' %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
-  name: r-{{ name }}
-  version: {{ version }}
+  name: r-here
+  version: {{ version|replace("-", "_") }}
 
 source:
-  fn: {{ name }}_{{ version }}.tar.gz
+  fn: here_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/{{ name }}_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/{{ name }}/{{ name }}_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/here_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/here/here_{{ version }}.tar.gz
   sha256: 5ba5e7d9002fc85bc633706b7ee486505c12b0bf5ecb177028bec6db706f65ed
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
     - r-rprojroot >=1.2
-
   run:
     - r-base
     - r-rprojroot >=1.2
 
 test:
   commands:
-    - $R -e "library('{{ name }}')"  # [not win]
-    - "\"%R%\" -e \"library('{{ name }}')\""  # [win]
+    - $R -e "library('here')"           # [not win]
+    - "\"%R%\" -e \"library('here')\""  # [win]
 
 about:
-  home: http://krlmlr.github.io/here 
+  home: https://github.com/krlmlr/here, http://krlmlr.github.io/here
   license: GPL-3
+  summary: Constructs paths to your project's files. The 'here()' function uses a reasonable
+    heuristics to find your project's files, based on the current working directory
+    at the time when the package is loaded. Use it as a drop-in replacement for 'file.path()',
+    it will always locate the files relative to your project root.
+  license_family: GPL3
   license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
   license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
-  summary: Constructs paths to your project's files based on heuristics.
-  description: |
-    Constructs paths to your project's files. The 'here()' function uses a reasonable 
-    heuristics to find your project's files, based on the current working directory at the time 
-    when the package is loaded. Use it as a drop-in replacement for 'file.path()', it will always 
-    locate the files relative to your project root.
-  license_family: GPL
-  dev_url: https://github.com/krlmlr/here
 
 extra:
   recipe-maintainers:
@@ -56,3 +55,4 @@ extra:
     - daler
     - jdblischak
     - cbrueffer
+    - dbast
