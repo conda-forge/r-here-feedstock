@@ -1,4 +1,4 @@
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/here_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/here/here_{{ version }}.tar.gz
-  sha256: 9944a2324134eed0353cac10c6c32effcc69335568851bd3327578426aa51bbe
+  sha256: 08ed908033420d3d665c87248b3a14d1b6e2b37844bf736be620578c20ca346b
 
 build:
   noarch: generic
