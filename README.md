@@ -1,11 +1,11 @@
-About r-here
-============
+About r-here-feedstock
+======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-here-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/krlmlr/here, http://krlmlr.github.io/here
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-here-feedstock/blob/main/LICENSE.txt)
 
 Summary: Constructs paths to your project's files. The 'here()' function uses a reasonable heuristics to find your project's files, based on the current working directory at the time when the package is loaded. Use it as a drop-in replacement for 'file.path()', it will always locate the files relative to your project root.
 
