@@ -1,4 +1,4 @@
-{% set version = "1.0.1" %}
+{% set version = "1.0.2" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/here_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/here/here_{{ version }}.tar.gz
-  sha256: 08ed908033420d3d665c87248b3a14d1b6e2b37844bf736be620578c20ca346b
+  sha256: 71980aa294314d6e032e680dfd2a59f792cab6f8d414cce03f2e823819190c3d
 
 build:
-  number: 4
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
